@@ -19,7 +19,7 @@ import com.example.habitstracker.data.entity.*
         WorkoutLog::class,
         Reminder::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class HabitsTrackerDatabase : RoomDatabase() {

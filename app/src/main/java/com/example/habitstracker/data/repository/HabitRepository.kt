@@ -11,6 +11,9 @@ class HabitRepository(
     fun getAllHabits() =
         habitDao.getAllHabits()
 
+    fun getHabitWithLogs() =
+        habitDao.getHabitWithLogs()
+
     fun getHabitById(habitId: Long) =
         habitDao.getHabitById(habitId)
 
@@ -26,6 +29,25 @@ class HabitRepository(
     fun getHabitLogs(habitId: Long) =
         habitDao.getHabitLogs(habitId)
 
+
     suspend fun insertHabitLog(log: HabitLog) =
         habitDao.insertHabitLog(log)
+
+    suspend fun getHabitLogByDate(
+        habitId: Long,
+        date: String
+    ) =
+        habitDao.getHabitLogByDate(
+            habitId,
+            date
+        )
+    suspend fun insertOrUpdateHabitLog(
+        log: HabitLog
+    ) =
+        habitDao.insertOrUpdateHabitLog(log)
+
+    suspend fun getHabitLogsList(
+        habitId: Long
+    ) =
+        habitDao.getHabitLogsList(habitId)
 }

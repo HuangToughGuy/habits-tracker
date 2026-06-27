@@ -2,8 +2,8 @@ package com.example.habitstracker.data.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
 import androidx.room.Index
+import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "habit_logs",
@@ -15,7 +15,15 @@ import androidx.room.Index
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index("habitId")]
+    indices = [
+        Index("habitId"),
+
+        // Chỉ cho phép 1 HabitLog / Habit / Ngày
+        Index(
+            value = ["habitId", "date"],
+            unique = true
+        )
+    ]
 )
 data class HabitLog(
 
@@ -26,9 +34,9 @@ data class HabitLog(
 
     val date: String,
 
-    val progress: Int,
+    val progress: Int = 0,
 
     val completed: Boolean,
 
-    val completedTime: String?
+    val completedTime: String? = null
 )

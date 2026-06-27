@@ -4,6 +4,7 @@ import androidx.room.*
 import com.example.habitstracker.data.entity.Habit
 import com.example.habitstracker.data.entity.HabitLog
 import kotlinx.coroutines.flow.Flow
+import com.example.habitstracker.data.model.HabitWithLogs
 
 @Dao
 interface HabitDao {
@@ -40,4 +41,31 @@ interface HabitDao {
         ORDER BY date DESC
     """)
     fun getHabitLogs(habitId: Long): Flow<List<HabitLog>>
+
+    @Transaction
+    @Query("SELECT * FROM habits")
+    fun getHabitWithLogs(): Flow<List<HabitWithLogs>>
+    @Query("""
+    SELECT * FROM habit_logs
+    WHERE habitId = :habitId
+    AND date = :date
+    LIMIT 1
+    """)
+    suspend fun getHabitLogByDate(
+        habitId: Long,
+        date: String
+    ): HabitLog?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertOrUpdateHabitLog(
+        log: HabitLog
+    )
+    @Query("""
+    SELECT * FROM habit_logs
+    WHERE habitId = :habitId
+    ORDER BY date DESC
+    """)
+    suspend fun getHabitLogsList(
+        habitId: Long
+    ): List<HabitLog>
 }
