@@ -83,14 +83,11 @@ class EditHabitFragment : Fragment(R.layout.fragment_edit_habit) {
 
                         binding.edtName.setText(it.name)
 
-                        binding.edtDescription
-                            .setText(it.description)
+                        binding.edtDescription.setText(it.description)
 
-                        binding.edtCategory
-                            .setText(it.category)
+                        binding.edtCategory.setText(it.category)
 
-                        binding.edtTarget
-                            .setText(it.target.toString())
+                        binding.edtTarget.setText(it.target.toString())
                     }
                 }
         }
@@ -98,18 +95,13 @@ class EditHabitFragment : Fragment(R.layout.fragment_edit_habit) {
 
     private fun updateHabit() {
 
-        val name =
-            binding.edtName.text.toString().trim()
+        val name = binding.edtName.text.toString().trim()
 
-        val description =
-            binding.edtDescription.text.toString().trim()
+        val description = binding.edtDescription.text.toString().trim()
 
-        val category =
-            binding.edtCategory.text.toString().trim()
+        val category = binding.edtCategory.text.toString().trim()
 
-        val target =
-            binding.edtTarget.text.toString()
-                .toIntOrNull() ?: 0
+        val target = binding.edtTarget.text.toString().toIntOrNull() ?: 0
 
         if (name.isBlank()) {
 

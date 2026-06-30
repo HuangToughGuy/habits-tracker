@@ -17,14 +17,20 @@ interface ReminderDao {
     suspend fun deleteReminder(reminder: Reminder)
 
     @Query("""
-        SELECT * FROM reminders
-        WHERE enabled = 1
+    SELECT * FROM reminders
+    ORDER BY reminderId DESC
     """)
-    fun getEnabledReminders(): Flow<List<Reminder>>
+    fun getAllReminders(): Flow<List<Reminder>>
 
     @Query("""
         SELECT * FROM reminders
         WHERE habitId = :habitId
     """)
     fun getRemindersByHabit(habitId: Long): Flow<List<Reminder>>
+
+    @Query("""
+    SELECT * FROM reminders
+    WHERE reminderId = :reminderId
+""")
+    fun getReminderById(reminderId: Long): Flow<Reminder?>
 }

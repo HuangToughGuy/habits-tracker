@@ -13,14 +13,11 @@ class HabitViewModel(
 
     val allHabits = repository.getAllHabits()
 
-    val habitsWithLogs =
-        repository.getHabitWithLogs()
+    val habitsWithLogs = repository.getHabitWithLogs()
 
-    val habitList =
-        repository.getAllHabits()
+    val habitList = repository.getAllHabits()
 
-    fun getHabitById(habitId: Long) =
-        repository.getHabitById(habitId)
+    fun getHabitById(habitId: Long) = repository.getHabitById(habitId)
 
     fun insertHabit(habit: Habit) {
         viewModelScope.launch {
@@ -57,7 +54,6 @@ class HabitViewModel(
     }
     suspend fun getHabitLogsList(
         habitId: Long
-    ) =
-        repository.getHabitLogsList(habitId)
+    ) = repository.getHabitLogsList(habitId)
 }
 

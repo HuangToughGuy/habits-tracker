@@ -8,21 +8,16 @@ class WorkoutRepository(
     private val workoutDao: WorkoutDao
 ) {
 
-    fun getAllWorkoutTypes() =
-        workoutDao.getAllWorkoutTypes()
+    fun getAllWorkoutTypes() = workoutDao.getAllWorkoutTypes()
 
     suspend fun insertWorkoutType(type: WorkoutType) =
         workoutDao.insertWorkoutType(type)
 
-    fun getAllWorkoutLogs() =
-        workoutDao.getAllWorkoutLogs()
+    fun getAllWorkoutLogs() = workoutDao.getAllWorkoutLogs()
 
-    suspend fun insertWorkoutLog(log: WorkoutLog) =
-        workoutDao.insertWorkoutLog(log)
+    suspend fun insertWorkoutLog(log: WorkoutLog) = workoutDao.insertWorkoutLog(log)
 
-    suspend fun updateWorkoutLog(log: WorkoutLog) =
-        workoutDao.updateWorkoutLog(log)
+    suspend fun updateWorkoutLog(log: WorkoutLog) = workoutDao.updateWorkoutLog(log)
 
-    suspend fun deleteWorkoutLog(log: WorkoutLog) =
-        workoutDao.deleteWorkoutLog(log)
+    suspend fun deleteWorkoutLog(log: WorkoutLog) = workoutDao.deleteWorkoutLog(log)
 }

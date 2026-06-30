@@ -70,9 +70,26 @@ class ReminderFragment : Fragment(R.layout.fragment_reminder) {
 
         adapter = ReminderAdapter(
 
-            onItemClick = {
+            onItemClick = { reminder ->
 
-                // bước sau làm EditReminder
+                val fragment = EditReminderFragment()
+
+                fragment.arguments = Bundle().apply {
+
+                    putLong(
+                        "reminderId",
+                        reminder.reminderId
+                    )
+                }
+
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.fragmentContainer,
+                        fragment
+                    )
+                    .addToBackStack(null)
+                    .commit()
             },
 
             onDeleteClick = {
@@ -200,7 +217,7 @@ class ReminderFragment : Fragment(R.layout.fragment_reminder) {
         viewLifecycleOwner.lifecycleScope.launch {
 
             reminderViewModel
-                .enabledReminders
+                .reminderList
                 .collect { reminders ->
 
                     adapter.submitList(reminders)
@@ -265,19 +282,15 @@ class ReminderFragment : Fragment(R.layout.fragment_reminder) {
 
             habitId = selectedHabitId,
 
+            habitName = binding.spHabit.selectedItem.toString(),
+
             time = selectedTime,
 
-            repeatType =
+            repeatType = binding.spRepeat.selectedItem.toString(),
 
-            binding.spRepeat.selectedItem.toString(),
+            message = binding.edtMessage.text.toString(),
 
-            message =
-
-            binding.edtMessage.text.toString(),
-
-            enabled =
-
-            binding.swEnable.isChecked
+            enabled = binding.swEnable.isChecked
         )
 
 

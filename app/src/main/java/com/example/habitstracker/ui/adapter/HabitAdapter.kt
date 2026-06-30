@@ -29,11 +29,9 @@ class HabitAdapter(
 
             binding.tvName.text = habit.name
             binding.tvCategory.text = habit.category
-            binding.tvTarget.text =
-                "Target: ${habit.target}"
+            binding.tvTarget.text = "Target: ${habit.target}"
 
-            binding.tvStreak.text =
-                "🔥 ${item.streak} day(s)"
+            binding.tvStreak.text = "🔥 ${item.streak} day(s)"
 
             binding.cbCompleted.setOnCheckedChangeListener(null)
 

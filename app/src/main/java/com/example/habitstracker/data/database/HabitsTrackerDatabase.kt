@@ -19,21 +19,15 @@ import com.example.habitstracker.data.entity.*
         WorkoutLog::class,
         Reminder::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class HabitsTrackerDatabase : RoomDatabase() {
-
     abstract fun userDao(): UserDao
-
     abstract fun habitDao(): HabitDao
-
     abstract fun healthRecordDao(): HealthRecordDao
-
     abstract fun workoutDao(): WorkoutDao
-
     abstract fun reminderDao(): ReminderDao
-
     companion object {
 
         @Volatile

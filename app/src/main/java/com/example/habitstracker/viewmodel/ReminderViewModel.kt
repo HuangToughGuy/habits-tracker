@@ -10,8 +10,8 @@ class ReminderViewModel(
     private val repository: ReminderRepository
 ) : ViewModel() {
 
-    val enabledReminders =
-        repository.getEnabledReminders()
+    val reminderList =
+        repository.getAllReminders()
 
     fun getRemindersByHabit(habitId: Long) =
         repository.getRemindersByHabit(habitId)
@@ -40,4 +40,7 @@ class ReminderViewModel(
             repository.deleteReminder(reminder)
         }
     }
+
+    fun getReminderById(reminderId: Long) =
+        repository.getReminderById(reminderId)
 }

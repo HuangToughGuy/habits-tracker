@@ -30,5 +30,7 @@ data class Reminder(
 
     val message: String,
 
-    val enabled: Boolean
+    val enabled: Boolean,
+
+    val habitName: String
 )

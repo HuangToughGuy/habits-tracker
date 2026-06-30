@@ -7,15 +7,11 @@ class UserRepository(
     private val userDao: UserDao
 ) {
 
-    fun getCurrentUser() =
-        userDao.getCurrentUser()
+    fun getCurrentUser() = userDao.getCurrentUser()
 
-    suspend fun insertUser(user: User) =
-        userDao.insertUser(user)
+    suspend fun insertUser(user: User) = userDao.insertUser(user)
 
-    suspend fun updateUser(user: User) =
-        userDao.updateUser(user)
+    suspend fun updateUser(user: User) = userDao.updateUser(user)
 
-    suspend fun deleteUser(user: User) =
-        userDao.deleteUser(user)
+    suspend fun deleteUser(user: User) = userDao.deleteUser(user)
 }

@@ -66,17 +66,13 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                         StreakUtils.calculateStreak(it.logs)
                     } ?: 0
 
-                binding.tvTotalHabit.text =
-                    "Total Habit: $totalHabit"
+                binding.tvTotalHabit.text = "Total Habit: $totalHabit"
 
-                binding.tvCompleted.text =
-                    "Completed Today: $completedToday"
+                binding.tvCompleted.text = "Completed Today: $completedToday"
 
-                binding.tvProgress.text =
-                    "Progress: $progress%"
+                binding.tvProgress.text = "Progress: $progress%"
 
-                binding.tvLongestStreak.text =
-                    "🔥 Longest Streak: $longestStreak day(s)"
+                binding.tvLongestStreak.text = "🔥 Longest Streak: $longestStreak day(s)"
             }
         }
     }

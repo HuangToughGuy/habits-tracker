@@ -8,30 +8,22 @@ class HabitRepository(
     private val habitDao: HabitDao
 ) {
 
-    fun getAllHabits() =
-        habitDao.getAllHabits()
+    fun getAllHabits() = habitDao.getAllHabits()
 
-    fun getHabitWithLogs() =
-        habitDao.getHabitWithLogs()
+    fun getHabitWithLogs() = habitDao.getHabitWithLogs()
 
-    fun getHabitById(habitId: Long) =
-        habitDao.getHabitById(habitId)
+    fun getHabitById(habitId: Long) = habitDao.getHabitById(habitId)
 
-    suspend fun insertHabit(habit: Habit) =
-        habitDao.insertHabit(habit)
+    suspend fun insertHabit(habit: Habit) = habitDao.insertHabit(habit)
 
-    suspend fun updateHabit(habit: Habit) =
-        habitDao.updateHabit(habit)
+    suspend fun updateHabit(habit: Habit) = habitDao.updateHabit(habit)
 
-    suspend fun deleteHabit(habit: Habit) =
-        habitDao.deleteHabit(habit)
+    suspend fun deleteHabit(habit: Habit) = habitDao.deleteHabit(habit)
 
-    fun getHabitLogs(habitId: Long) =
-        habitDao.getHabitLogs(habitId)
+    fun getHabitLogs(habitId: Long) = habitDao.getHabitLogs(habitId)
 
 
-    suspend fun insertHabitLog(log: HabitLog) =
-        habitDao.insertHabitLog(log)
+    suspend fun insertHabitLog(log: HabitLog) = habitDao.insertHabitLog(log)
 
     suspend fun getHabitLogByDate(
         habitId: Long,
@@ -43,11 +35,9 @@ class HabitRepository(
         )
     suspend fun insertOrUpdateHabitLog(
         log: HabitLog
-    ) =
-        habitDao.insertOrUpdateHabitLog(log)
+    ) = habitDao.insertOrUpdateHabitLog(log)
 
     suspend fun getHabitLogsList(
         habitId: Long
-    ) =
-        habitDao.getHabitLogsList(habitId)
+    ) = habitDao.getHabitLogsList(habitId)
 }

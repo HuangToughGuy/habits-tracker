@@ -7,8 +7,7 @@ class HealthRecordRepository(
     private val healthRecordDao: HealthRecordDao
 ) {
 
-    fun getAllRecords() =
-        healthRecordDao.getAllRecords()
+    fun getAllRecords() = healthRecordDao.getAllRecords()
 
     suspend fun insertRecord(record: HealthRecord) =
         healthRecordDao.insertRecord(record)

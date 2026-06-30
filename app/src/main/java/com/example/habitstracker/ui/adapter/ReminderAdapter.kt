@@ -33,17 +33,17 @@ class ReminderAdapter(
 
         fun bind(reminder: Reminder) {
 
+            binding.tvHabitName.text = reminder.habitName
+
             binding.tvTime.text = reminder.time
 
-            binding.tvRepeat.text =
-                "Repeat: ${reminder.repeatType}"
+            binding.tvRepeat.text = "Repeat: ${reminder.repeatType}"
 
             binding.tvMessage.text = reminder.message
 
             binding.swEnabled.setOnCheckedChangeListener(null)
 
-            binding.swEnabled.isChecked =
-                reminder.enabled
+            binding.swEnabled.isChecked = reminder.enabled
 
             binding.swEnabled.setOnCheckedChangeListener { _, checked ->
 

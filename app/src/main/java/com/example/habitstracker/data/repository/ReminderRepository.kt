@@ -7,8 +7,7 @@ class ReminderRepository(
     private val reminderDao: ReminderDao
 ) {
 
-    fun getEnabledReminders() =
-        reminderDao.getEnabledReminders()
+    fun getAllReminders() = reminderDao.getAllReminders()
 
     fun getRemindersByHabit(habitId: Long) =
         reminderDao.getRemindersByHabit(habitId)
@@ -21,4 +20,7 @@ class ReminderRepository(
 
     suspend fun deleteReminder(reminder: Reminder) =
         reminderDao.deleteReminder(reminder)
+
+    fun getReminderById(reminderId: Long) =
+        reminderDao.getReminderById(reminderId)
 }
