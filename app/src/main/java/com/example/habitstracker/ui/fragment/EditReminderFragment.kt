@@ -290,9 +290,13 @@ class EditReminderFragment : Fragment(R.layout.fragment_edit_reminder) {
 
                     updated.reminderId,
 
-                    binding.spHabit.selectedItem.toString(),
+                    updated.habitName,
 
                     updated.message,
+
+                    updated.repeatType,
+
+                    updated.enabled,
 
                     calendar.timeInMillis
                 )

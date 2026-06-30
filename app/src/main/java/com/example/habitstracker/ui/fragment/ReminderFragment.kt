@@ -75,13 +75,11 @@ class ReminderFragment : Fragment(R.layout.fragment_reminder) {
                 val fragment = EditReminderFragment()
 
                 fragment.arguments = Bundle().apply {
-
                     putLong(
                         "reminderId",
                         reminder.reminderId
                     )
                 }
-
                 parentFragmentManager
                     .beginTransaction()
                     .replace(
@@ -92,17 +90,71 @@ class ReminderFragment : Fragment(R.layout.fragment_reminder) {
                     .commit()
             },
 
-            onDeleteClick = {
-
-                reminderViewModel.deleteReminder(it)
+            onDeleteClick = { reminder ->
+                ReminderAlarmManager(requireContext())
+                    .cancelReminder(
+                        reminder.reminderId
+                    )
+                reminderViewModel.deleteReminder(
+                    reminder
+                )
             },
 
             onEnableChanged = { reminder, enabled ->
+                val alarmManager =
+                    ReminderAlarmManager(requireContext())
 
+                if (enabled) {
+                    val calendar = java.util.Calendar.getInstance()
+                    val time = reminder.time.split(":")
+                    calendar.set(
+                        java.util.Calendar.HOUR_OF_DAY,
+                        time[0].toInt()
+                    )
+                    calendar.set(
+                        java.util.Calendar.MINUTE,
+                        time[1].toInt()
+                    )
+                    calendar.set(
+                        java.util.Calendar.SECOND,
+                        0
+                    )
+                    if (calendar.timeInMillis <= System.currentTimeMillis()) {
+                        when (reminder.repeatType) {
+                            "Daily" ->
+                                calendar.add(
+                                    java.util.Calendar.DAY_OF_YEAR,
+                                    1
+                                )
+                            "Weekly" ->
+                                calendar.add(
+                                    java.util.Calendar.DAY_OF_YEAR,
+                                    7
+                                )
+                            "Monthly" ->
+                                calendar.add(
+                                    java.util.Calendar.MONTH,
+                                    1
+                                )
+                        }
+                    }
+
+                    alarmManager.scheduleReminder(
+                        reminder.reminderId,
+                        reminder.habitName,
+                        reminder.message,
+                        reminder.repeatType,
+                        true,
+                        calendar.timeInMillis
+                    )
+
+                } else {
+                    alarmManager.cancelReminder(
+                        reminder.reminderId
+                    )
+                }
                 reminderViewModel.updateReminder(
-
                     reminder.copy(
-
                         enabled = enabled
                     )
                 )
@@ -325,8 +377,10 @@ class ReminderFragment : Fragment(R.layout.fragment_reminder) {
             ReminderAlarmManager(requireContext())
                 .scheduleReminder(
                     reminderId = reminderId,
-                    habitName = binding.spHabit.selectedItem.toString(),
+                    habitName = reminder.habitName,
                     message = reminder.message,
+                    repeatType = reminder.repeatType,
+                    enabled = reminder.enabled,
                     triggerTime = calendar.timeInMillis
                 )
 

@@ -13,6 +13,8 @@ class ReminderAlarmManager(
         reminderId: Long,
         habitName: String,
         message: String,
+        repeatType: String,
+        enabled: Boolean,
         triggerTime: Long
     ) {
 
@@ -29,17 +31,18 @@ class ReminderAlarmManager(
             putExtra("habitName", habitName)
 
             putExtra("message", message)
+
+            putExtra("repeatType", repeatType)
+
+            putExtra("reminderId", reminderId)
+
+            putExtra("enabled", enabled)
         }
 
-        val pendingIntent =
-            PendingIntent.getBroadcast(
-
+        val pendingIntent = PendingIntent.getBroadcast(
                 context,
-
                 reminderId.toInt(),
-
                 intent,
-
                 PendingIntent.FLAG_UPDATE_CURRENT or
                         PendingIntent.FLAG_IMMUTABLE
             )
@@ -47,9 +50,7 @@ class ReminderAlarmManager(
         alarmManager.setExactAndAllowWhileIdle(
 
             AlarmManager.RTC_WAKEUP,
-
             triggerTime,
-
             pendingIntent
         )
     }
@@ -69,11 +70,8 @@ class ReminderAlarmManager(
             PendingIntent.getBroadcast(
 
                 context,
-
                 reminderId.toInt(),
-
                 intent,
-
                 PendingIntent.FLAG_UPDATE_CURRENT or
                         PendingIntent.FLAG_IMMUTABLE
             )
