@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/edtDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date"
+            android:focusable="false"
+            android:clickable="true"/>
+
+        <EditText
+            android:id="@+id/edtWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Weight (kg)"
+            android:inputType="numberDecimal"/>
+
+        <EditText
+            android:id="@+id/edtWater"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Water Intake (L)"
+            android:inputType="numberDecimal"/>
+
+        <EditText
+            android:id="@+id/edtSleep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sleep Hours"
+            android:inputType="numberDecimal"/>
+
+        <EditText
+            android:id="@+id/edtHeartRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Heart Rate"
+            android:inputType="number"/>
+
+        <Button
+            android:id="@+id/btnUpdateHealth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Health Record"/>
+
+    </LinearLayout>
+
+</ScrollView>

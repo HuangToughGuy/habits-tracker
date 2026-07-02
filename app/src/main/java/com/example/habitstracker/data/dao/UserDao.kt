@@ -17,4 +17,17 @@ interface UserDao {
 
     @Query("SELECT * FROM users LIMIT 1")
     fun getCurrentUser(): Flow<User?>
+
+    @Query("""
+    SELECT * FROM users
+    WHERE userId = :userId
+    """)
+    fun getUserById(
+        userId: Long
+    ): Flow<User?>
+
+    @Query("""
+    SELECT COUNT(*) FROM users
+    """)
+    suspend fun getUserCount(): Int
 }

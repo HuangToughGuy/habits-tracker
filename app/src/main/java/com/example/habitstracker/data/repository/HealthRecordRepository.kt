@@ -17,4 +17,8 @@ class HealthRecordRepository(
 
     suspend fun deleteRecord(record: HealthRecord) =
         healthRecordDao.deleteRecord(record)
+
+    fun getRecordById(
+        recordId: Long
+    ) = healthRecordDao.getRecordById(recordId)
 }

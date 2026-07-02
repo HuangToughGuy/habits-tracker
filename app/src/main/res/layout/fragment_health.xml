@@ -2,25 +2,18 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnAddHabit"
+        android:id="@+id/btnAddHealth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Habit"/>
-
-    <Button
-        android:id="@+id/btnReminder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reminder"/>
-
+        android:text="Add Health Record"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHabits"
+        android:id="@+id/rvHealth"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

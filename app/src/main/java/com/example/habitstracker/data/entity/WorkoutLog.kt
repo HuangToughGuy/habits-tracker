@@ -35,6 +35,8 @@ data class WorkoutLog(
 
     val typeId: Long,
 
+    val workoutName: String,
+
     val date: String,
 
     val duration: Int,

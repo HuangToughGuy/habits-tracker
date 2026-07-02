@@ -32,4 +32,12 @@ interface WorkoutDao {
         ORDER BY date DESC
     """)
     fun getAllWorkoutLogs(): Flow<List<WorkoutLog>>
+
+    @Query("""
+        SELECT * FROM workout_logs
+        WHERE logId = :logId
+    """)
+    fun getWorkoutLogById(
+        logId: Long
+    ): Flow<WorkoutLog?>
 }

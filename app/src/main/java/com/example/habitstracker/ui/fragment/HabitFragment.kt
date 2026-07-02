@@ -94,13 +94,9 @@ class HabitFragment : Fragment(R.layout.fragment_habit) {
                 val log = HabitLog(
 
                     habitId = habit.habitId,
-
                     date = today,
-
                     progress = habit.target,
-
                     completed = checked,
-
                     completedTime = if (checked) currentTime else null
                 )
 
@@ -144,17 +140,7 @@ class HabitFragment : Fragment(R.layout.fragment_habit) {
             }
         }
 
-        binding.btnDashboard.setOnClickListener {
 
-            parentFragmentManager
-                .beginTransaction()
-                .replace(
-                    R.id.fragmentContainer,
-                    DashboardFragment()
-                )
-                .addToBackStack(null)
-                .commit()
-        }
         binding.btnAddHabit.setOnClickListener {
 
             parentFragmentManager
@@ -177,6 +163,7 @@ class HabitFragment : Fragment(R.layout.fragment_habit) {
                 .addToBackStack(null)
                 .commit()
         }
+
     }
 
     override fun onDestroyView() {

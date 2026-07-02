@@ -21,4 +21,12 @@ interface HealthRecordDao {
         ORDER BY date DESC
     """)
     fun getAllRecords(): Flow<List<HealthRecord>>
+
+    @Query("""
+    SELECT * FROM health_records
+    WHERE recordId = :recordId
+    """)
+    fun getRecordById(
+        recordId: Long
+    ): Flow<HealthRecord?>
 }

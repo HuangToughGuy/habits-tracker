@@ -9,9 +9,13 @@ class UserRepository(
 
     fun getCurrentUser() = userDao.getCurrentUser()
 
+    fun getUserById(userId: Long) = userDao.getUserById(userId)
+
     suspend fun insertUser(user: User) = userDao.insertUser(user)
 
     suspend fun updateUser(user: User) = userDao.updateUser(user)
 
     suspend fun deleteUser(user: User) = userDao.deleteUser(user)
+
+    suspend fun getUserCount() = userDao.getUserCount()
 }
