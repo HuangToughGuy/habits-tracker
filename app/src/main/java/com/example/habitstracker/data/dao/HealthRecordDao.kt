@@ -29,4 +29,13 @@ interface HealthRecordDao {
     fun getRecordById(
         recordId: Long
     ): Flow<HealthRecord?>
+
+    @Query("""
+    SELECT *
+    FROM health_records
+    ORDER BY date DESC
+    LIMIT 1
+    """)
+    fun getLatestRecord():
+            Flow<HealthRecord?>
 }

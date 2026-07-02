@@ -13,6 +13,7 @@ import com.example.habitstracker.databinding.FragmentHealthBinding
 import com.example.habitstracker.ui.adapter.HealthAdapter
 import com.example.habitstracker.viewmodel.HealthRecordViewModel
 import com.example.habitstracker.viewmodel.HealthRecordViewModelFactory
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class HealthFragment : Fragment(R.layout.fragment_health) {
@@ -44,43 +45,48 @@ class HealthFragment : Fragment(R.layout.fragment_health) {
 
         _binding = FragmentHealthBinding.bind(view)
 
-        adapter = HealthAdapter(
-
-            onItemClick = { record ->
-
-                val fragment = EditHealthFragment()
-
-                val bundle = Bundle()
-
-                bundle.putLong(
-                    "recordId",
-                    record.recordId
-                )
-
-                fragment.arguments = bundle
-
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.fragmentContainer,
-                        fragment
-                    )
-                    .addToBackStack(null)
-                    .commit()
-            },
-
-            onDeleteClick = { record ->
-
-                viewModel.deleteRecord(record)
-            }
-        )
-
         binding.rvHealth.layoutManager =
             LinearLayoutManager(requireContext())
 
-        binding.rvHealth.adapter = adapter
-
         lifecycleScope.launch {
+
+            val user = HabitsTrackerDatabase
+                .getInstance(requireContext())
+                .userDao()
+                .getCurrentUser()
+                .first()
+            val height = user?.height ?: 170f
+            adapter = HealthAdapter(
+                userHeight = height,
+                onItemClick = { record ->
+
+                    val fragment = EditHealthFragment()
+
+                    val bundle = Bundle()
+
+                    bundle.putLong(
+                        "recordId",
+                        record.recordId
+                    )
+                    fragment.arguments = bundle
+
+                    parentFragmentManager
+                        .beginTransaction()
+                        .replace(
+                            R.id.fragmentContainer,
+                            fragment
+                        )
+                        .addToBackStack(null)
+                        .commit()
+                },
+
+                onDeleteClick = { record ->
+
+                    viewModel.deleteRecord(record)
+                }
+            )
+
+            binding.rvHealth.adapter = adapter
 
             viewModel.records.collect { records ->
 

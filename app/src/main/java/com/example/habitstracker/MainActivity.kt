@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     if (repository.getUserCount() == 0) {
                         CreateProfileFragment()
                     } else {
-                        HabitFragment()
+                        DashboardFragment()
                     }
 
                 supportFragmentManager

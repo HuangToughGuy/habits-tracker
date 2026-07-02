@@ -15,6 +15,10 @@ class WorkoutViewModel(
 
     val workoutLogs = repository.getAllWorkoutLogs()
 
+    val latestWorkout = repository.getLatestWorkout()
+
+    val latestWorkoutSummary = repository.getLatestWorkoutSummary()
+
     fun getWorkoutLogById(
         logId: Long
     ) = repository.getWorkoutLogById(logId)
@@ -55,4 +59,6 @@ class WorkoutViewModel(
             repository.deleteWorkoutLog(log)
         }
     }
+
+
 }

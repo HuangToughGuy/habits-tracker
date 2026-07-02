@@ -35,4 +35,8 @@ class WorkoutRepository(
     suspend fun deleteWorkoutLog(
         log: WorkoutLog
     ) = workoutDao.deleteWorkoutLog(log)
+
+    fun getLatestWorkout() = workoutDao.getLatestWorkout()
+
+    fun getLatestWorkoutSummary() = workoutDao.getLatestWorkoutSummary()
 }

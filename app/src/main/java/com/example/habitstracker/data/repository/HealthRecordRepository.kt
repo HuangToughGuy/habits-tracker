@@ -21,4 +21,6 @@ class HealthRecordRepository(
     fun getRecordById(
         recordId: Long
     ) = healthRecordDao.getRecordById(recordId)
+
+    fun getLatestRecord() = healthRecordDao.getLatestRecord()
 }

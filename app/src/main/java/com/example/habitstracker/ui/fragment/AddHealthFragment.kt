@@ -17,12 +17,17 @@ import com.example.habitstracker.viewmodel.HealthRecordViewModelFactory
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.util.Calendar
+import android.text.Editable
+import android.text.TextWatcher
+import com.example.habitstracker.utils.BMIUtils
 
 class AddHealthFragment :
     Fragment(R.layout.fragment_add_health) {
 
     private var _binding: FragmentAddHealthBinding? = null
     private val binding get() = _binding!!
+
+    private var userHeight = 0f
 
     private val viewModel: HealthRecordViewModel by viewModels {
         HealthRecordViewModelFactory(
@@ -43,6 +48,8 @@ class AddHealthFragment :
         _binding = FragmentAddHealthBinding.bind(view)
 
         setToday()
+        loadUserHeight()
+        observeWeight()
 
         binding.edtDate.setOnClickListener {
             showDatePicker()
@@ -64,6 +71,67 @@ class AddHealthFragment :
                 calendar.get(Calendar.DAY_OF_MONTH)
             )
         )
+    }
+
+    private fun loadUserHeight() {
+        lifecycleScope.launch {
+            val user = HabitsTrackerDatabase
+                .getInstance(requireContext())
+                .userDao()
+                .getCurrentUser()
+                .first()
+            if (user != null) {
+                userHeight = user.height
+            }
+        }
+    }
+
+    private fun observeWeight() {
+        binding.edtWeight.addTextChangedListener(
+            object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+
+                    updateBMI()
+                }
+                override fun afterTextChanged(
+                    s: Editable?
+                ) {
+                }
+            }
+        )
+    }
+    private fun updateBMI() {
+        if (userHeight == 0f)
+            return
+        val weight =
+            binding.edtWeight.text
+                .toString()
+                .toFloatOrNull()
+                ?: return
+
+        val bmi =
+            BMIUtils.calculateBMI(
+                weight,
+                userHeight
+            )
+
+        binding.tvBMI.text = "BMI : %.2f".format(bmi)
+        binding.tvBMIStatus.text =
+            "Status : ${BMIUtils.getBMIStatus(bmi)}"
+
     }
 
     private fun showDatePicker() {
@@ -142,6 +210,7 @@ class AddHealthFragment :
             parentFragmentManager.popBackStack()
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

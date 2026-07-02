@@ -7,6 +7,15 @@
     android:padding="20dp">
 
     <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Today's Summary"
@@ -39,6 +48,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="🔥 Longest Streak: 0 day(s)"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tvWorkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Latest Workout"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tvHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Latest Health"
         android:textSize="18sp"/>
 
 </LinearLayout>

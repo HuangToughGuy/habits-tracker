@@ -12,6 +12,7 @@ class HealthRecordViewModel(
 
     val records = repository.getAllRecords()
 
+    val latestHealth = repository.getLatestRecord()
     fun getRecordById(
         recordId: Long
     ) = repository.getRecordById(recordId)

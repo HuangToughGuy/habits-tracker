@@ -46,6 +46,22 @@
             android:hint="Heart Rate"
             android:inputType="number"/>
 
+        <TextView
+            android:id="@+id/tvBMI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="BMI: --"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvBMIStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status: --"
+            android:textSize="16sp"/>
+
         <Button
             android:id="@+id/btnSaveHealth"
             android:layout_width="match_parent"

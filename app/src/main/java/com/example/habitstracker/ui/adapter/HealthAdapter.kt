@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitstracker.data.entity.HealthRecord
 import com.example.habitstracker.databinding.ItemHealthBinding
+import com.example.habitstracker.utils.BMIUtils
 
 class HealthAdapter(
-
+    private val userHeight: Float,
     private val onItemClick: (HealthRecord) -> Unit,
     private val onDeleteClick: (HealthRecord) -> Unit
 
@@ -40,8 +41,14 @@ class HealthAdapter(
 
             binding.tvHeartRate.text = "Heart Rate: ${record.heartRate} bpm"
 
-            binding.root.setOnClickListener {
+            val bmi = BMIUtils.calculateBMI(
+                record.weight,
+                userHeight
 
+            )
+            binding.tvBMI.text = "BMI: %.2f".format(bmi)
+            binding.tvBMIStatus.text = "Status: ${BMIUtils.getBMIStatus(bmi)}"
+            binding.root.setOnClickListener {
                 onItemClick(record)
             }
 
